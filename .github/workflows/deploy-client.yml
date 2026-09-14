@@ -33,4 +33,4 @@ jobs:
           apiToken: ${{ secrets.CLIENT_CF_API_TOKEN }}
           accountId: ${{ secrets.CLIENT_CF_ACCOUNT_ID }}
           # projectName: "rsvp-tinaturner-com" # Must match project name created in Step 1
-          command: pages deploy dist --project-name=rsvp-tinaturner-com --branch=main
+          command: pages deploy dist --project-name=rsvp-tinaturner-com --branch=production
