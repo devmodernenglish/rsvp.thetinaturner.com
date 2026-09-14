@@ -12,4 +12,7 @@ export default defineConfig({
     // Inline all component CSS into the HTML so it isn't a render-blocking request
     inlineStylesheets: "always",
   },
+  devToolbar: {
+    enabled: false,
+  },
 });
