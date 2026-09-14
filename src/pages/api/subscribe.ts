@@ -8,14 +8,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const data = await request.json();
     const { firstName, lastName, email, country, dobDay, dobMonth, dobYear, marketing } = data;
 
+    // 1. Check Cloudflare runtime env (Production / Preview on Cloudflare Workers)
+    // 2. Fallback to process.env (Local dev via Node runtime)
+    // 3. Fallback to import.meta.env (Astro Vite local bundler)
     const runtimeEnv = (locals as any)?.runtime?.env;
 
-    // Access secrets from Cloudflare env bindings or fallback to process.env
-    const apiKey = runtimeEnv?.KLAVIYO_API_KEY || process.env.KLAVIYO_API_KEY;
-    const listId = runtimeEnv?.KLAVIYO_LIST_ID || process.env.KLAVIYO_LIST_ID;
+    const apiKey = runtimeEnv?.KLAVIYO_API_KEY ?? process.env.KLAVIYO_API_KEY ?? import.meta.env.KLAVIYO_API_KEY;
+
+    const listId = runtimeEnv?.KLAVIYO_LIST_ID ?? process.env.KLAVIYO_LIST_ID ?? import.meta.env.KLAVIYO_LIST_ID;
 
     if (!apiKey || !listId) {
-      console.log("apikey");
       return new Response(JSON.stringify({ message: "Server configuration error" }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
