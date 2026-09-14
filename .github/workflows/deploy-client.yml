@@ -3,8 +3,8 @@ name: Deploy to Client Cloudflare Account
 on:
   push:
     branches:
-      - main # Adjust if your default branch is master
-
+      - production
+  workflow_dispatch: # Keeps the manual "Run workflow" button active in GitHub UI for convenience
 jobs:
   deploy-to-client:
     runs-on: ubuntu-latest
