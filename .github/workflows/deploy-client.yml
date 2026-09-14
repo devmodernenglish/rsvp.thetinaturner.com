@@ -1,0 +1,36 @@
+name: Deploy to Client Cloudflare Account
+
+on:
+  push:
+    branches:
+      - main # Adjust if your default branch is master
+
+jobs:
+  deploy-to-client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro
+        run: npm run build
+        env:
+          # Optional: Pass client-specific environment variables at build time if needed
+          KLAVIYO_API_KEY: ${{ secrets.KLAVIYO_API_KEY }}
+          KLAVIYO_LIST_ID: ${{ secrets.KLAVIYO_LIST_ID }}
+
+      - name: Deploy to Client Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLIENT_CF_API_TOKEN }}
+          accountId: ${{ secrets.CLIENT_CF_ACCOUNT_ID }}
+          projectName: "rsvp-tinaturner-com" # Must match project name created in Step 1
+          directory: "dist"
