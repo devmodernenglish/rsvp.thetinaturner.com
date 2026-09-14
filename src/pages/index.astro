@@ -138,9 +138,11 @@ const intro =
 
   .hero__title {
     position: relative;
-    width: min(315px, 84vw);
-    aspect-ratio: 315 / 177;
-    margin: 30px auto 0;
+    /*width: min(315px, 84vw);
+    height: auto;*/
+    aspect-ratio: 343 / 192;
+    /*margin: 16px auto 16px;*/
+    margin: 16px;
   }
 
   .title {
@@ -167,14 +169,14 @@ const intro =
     position: relative;
     width: 100%;
     aspect-ratio: 375 / 430;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
   }
 
   .hero__photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 62% center;
+    object-position: 50% center;
   }
 
   .acc {
@@ -232,6 +234,7 @@ const intro =
     padding: 16px;
     background: var(--red);
     color: var(--black);
+    font-family: var(--font-title);
     font-weight: 700;
     font-size: 15px;
     line-height: 1;
@@ -250,8 +253,10 @@ const intro =
 
   /* ---- Date band (mobile) -------------------------------------- */
   .date-band {
-    padding: 20px 20px 24px;
+    padding: 24px 20px 24px;
     text-align: center;
+    font-family: var(--font-title);
+    font-weight: 700;
   }
 
   .date-band__date,
@@ -274,7 +279,7 @@ const intro =
   .signup {
     display: flex;
     flex-direction: column;
-    padding: 48px var(--gutter-mobile) 40px;
+    padding: 32px var(--gutter-mobile) 40px;
   }
 
   /* Intro paragraph (desktop bumps the size to 16px) */
@@ -291,7 +296,7 @@ const intro =
   .signup__heading {
     margin: 0 0 30px 0;
     color: var(--white);
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     line-height: 0.8;
     letter-spacing: -0.03em;
@@ -446,6 +451,7 @@ const intro =
       width: 2px;
       height: 80px;
       background: linear-gradient(to bottom, var(--blue), rgba(0, 173, 238, 0));
+      display: none;
     }
 
     .signup {
@@ -476,7 +482,7 @@ const intro =
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 60% center;
+      object-position: 50% center;
     }
 
     /* Sits at the same height as the button-top accent (hero__cta bottom 110px
@@ -512,6 +518,7 @@ const intro =
     .date-badge__date,
     .date-badge__sub {
       margin: 0;
+      font-family: var(--font-title);
       font-weight: 700;
       font-size: 18px;
       line-height: 1.2;
