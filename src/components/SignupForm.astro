@@ -7,22 +7,48 @@
 // hook for that lives in the <script> below (see `TODO: backend`).
 
 const months = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 // A short, representative country list — extend as needed.
 const countries = [
-  'United Kingdom', 'Germany', 'United States', 'France', 'Netherlands',
-  'Belgium', 'Switzerland', 'Austria', 'Ireland', 'Spain', 'Italy',
-  'Sweden', 'Denmark', 'Norway', 'Australia', 'Canada', 'Other',
+  "United Kingdom",
+  "Germany",
+  "United States",
+  "France",
+  "Netherlands",
+  "Belgium",
+  "Switzerland",
+  "Austria",
+  "Ireland",
+  "Spain",
+  "Italy",
+  "Sweden",
+  "Denmark",
+  "Norway",
+  "Australia",
+  "Canada",
+  "Other",
 ];
 ---
 
 <div class="signup__body" data-signup>
   <form class="form" novalidate data-form>
     <div class="field" data-field>
-      <label class="field__label" for="firstName">First name</label>
+      <label class="field__label" for="firstName">
+        First name
+      </label>
       <input
         class="field__input"
         id="firstName"
@@ -35,7 +61,9 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="lastName">Last name</label>
+      <label class="field__label" for="lastName">
+        Last name
+      </label>
       <input
         class="field__input"
         id="lastName"
@@ -48,7 +76,9 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="email">Email</label>
+      <label class="field__label" for="email">
+        Email
+      </label>
       <input
         class="field__input"
         id="email"
@@ -61,10 +91,16 @@ const countries = [
     </div>
 
     <div class="field field--select" data-field>
-      <label class="field__label" for="country">Country</label>
+      <label class="field__label" for="country">
+        Country
+      </label>
       <select class="field__input field__select" id="country" name="country" required>
-        <option value="" disabled selected>Please select</option>
-        {countries.map((c) => <option value={c}>{c}</option>)}
+        <option value="" disabled selected>
+          Please select
+        </option>
+        {countries.map((c) => (
+          <option value={c}>{c}</option>
+        ))}
       </select>
       <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
     </div>
@@ -73,7 +109,9 @@ const countries = [
       <legend class="field__label">Date of birth</legend>
       <div class="dob">
         <div class="field field--sub">
-          <label class="field__label field__label--sm" for="dobDay">Day</label>
+          <label class="field__label field__label--sm" for="dobDay">
+            Day
+          </label>
           <input
             class="field__input"
             id="dobDay"
@@ -86,15 +124,23 @@ const countries = [
           />
         </div>
         <div class="field field--sub field--select">
-          <label class="field__label field__label--sm" for="dobMonth">Month</label>
+          <label class="field__label field__label--sm" for="dobMonth">
+            Month
+          </label>
           <select class="field__input field__select" id="dobMonth" name="dobMonth" required>
-            <option value="" disabled selected>Please select</option>
-            {months.map((m) => <option value={m}>{m}</option>)}
+            <option value="" disabled selected>
+              Please select
+            </option>
+            {months.map((m) => (
+              <option value={m}>{m}</option>
+            ))}
           </select>
           <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
         </div>
         <div class="field field--sub">
-          <label class="field__label field__label--sm" for="dobYear">Year</label>
+          <label class="field__label field__label--sm" for="dobYear">
+            Year
+          </label>
           <input
             class="field__input"
             id="dobYear"
@@ -116,19 +162,44 @@ const countries = [
         <span class="check__text">
           I want to receive updates and marketing communication from
           <a href="#">Tina Turner</a>. By signing up you agree to the Tina Turner
-          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a>. For information on how we process your personal
-          data please see our <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. You can unsubscribe at any time.
+          <a
+            href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Terms of Use
+          </a>
+          . For information on how we process your personal data please see our{" "}
+          <a
+            href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Policy
+          </a>
+          . You can unsubscribe at any time.
         </span>
       </label>
 
       <label class="check" data-field>
         <input class="check__input" type="checkbox" name="terms" required />
         <span class="check__box" aria-hidden="true"></span>
-        <span class="check__text">*I agree to the Tina Turner <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a></span>
+        <span class="check__text">
+          *I agree to the Tina Turner{" "}
+          <a
+            href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Terms of Use
+          </a>
+        </span>
       </label>
     </div>
 
-    <button class="btn btn--submit" type="submit">Sign up &amp; Save the date</button>
+    <button class="btn btn--submit" type="submit">
+      Sign up &amp; Save the date
+    </button>
 
     <p class="form__error" data-error hidden>
       <img class="form__error-icon" src="/svg/error.svg" alt="" aria-hidden="true" width="24" height="24" />
@@ -140,7 +211,10 @@ const countries = [
     <p class="display success__title">Success!</p>
     <div class="success__body">
       <p>We’ll email you if you’re successful getting tickets to Tina’s 87th Birthday in Cologne.</p>
-      <p>If you’re not one of the lucky ones, you’ll still receive a unique link to watch the celebrations live from home.</p>
+      <p>
+        If you’re not one of the lucky ones, you’ll still receive a unique link to watch the celebrations live from
+        home.
+      </p>
     </div>
   </div>
 </div>
@@ -296,7 +370,9 @@ const countries = [
     height: 20px;
     border: 1px solid var(--white);
     position: relative;
-    transition: background-color 0.12s ease, border-color 0.12s ease;
+    transition:
+      background-color 0.12s ease,
+      border-color 0.12s ease;
   }
 
   .check__input:checked + .check__box {
@@ -305,7 +381,7 @@ const countries = [
   }
 
   .check__input:checked + .check__box::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 6px;
     top: 2px;
@@ -409,67 +485,121 @@ const countries = [
 </style>
 
 <script>
-  const form = document.querySelector('[data-form]');
-  const errorRow = document.querySelector('[data-error]');
-  const errorText = document.querySelector('[data-error-text]');
-  const successPanel = document.querySelector('[data-success]');
+  const form = document.querySelector("[data-form]");
+  const errorRow = document.querySelector("[data-error]");
+  const errorText = document.querySelector("[data-error-text]");
+  const successPanel = document.querySelector("[data-success]");
+  const submitBtn = document.querySelector(".btn--submit");
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const monthMap = {
+    January: 1,
+    February: 2,
+    March: 3,
+    April: 4,
+    May: 5,
+    June: 6,
+    July: 7,
+    August: 8,
+    September: 9,
+    October: 10,
+    November: 11,
+    December: 12,
+  };
+
   if (form) {
     // Clear a field's error state as soon as the user interacts with it.
-    form.addEventListener('input', (event) => {
-      const container = event.target.closest('[data-field]');
-      if (container) container.classList.remove('is-error');
-      // Hide the summary error once no fields remain in error.
-      if (!form.querySelector('.is-error') && errorRow) errorRow.hidden = true;
+    form.addEventListener("input", (event) => {
+      const container = event.target.closest("[data-field]");
+      if (container) container.classList.remove("is-error");
+      if (!form.querySelector(".is-error") && errorRow) errorRow.hidden = true;
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const invalid = [];
-      form.querySelectorAll('[data-field]').forEach((container) => {
-        container.classList.remove('is-error');
+      form.querySelectorAll("[data-field]").forEach((container) => {
+        container.classList.remove("is-error");
 
         let ok = true;
-        container.querySelectorAll('input, select').forEach((control) => {
+        container.querySelectorAll("input, select").forEach((control) => {
           if (!control.required) return;
-          if (control.type === 'checkbox') {
+          if (control.type === "checkbox") {
             if (!control.checked) ok = false;
           } else if (!control.value.trim()) {
             ok = false;
-          } else if (control.type === 'email' && !emailPattern.test(control.value)) {
+          } else if (control.type === "email" && !emailPattern.test(control.value)) {
             ok = false;
           }
         });
 
         if (!ok) {
-          container.classList.add('is-error');
+          container.classList.add("is-error");
           invalid.push(container);
         }
       });
 
       if (invalid.length > 0) {
         if (errorRow && errorText) {
-          errorText.textContent = 'Please complete all mandatory fields';
+          errorText.textContent = "Please complete all mandatory fields";
           errorRow.hidden = false;
         }
-        const first = invalid[0].querySelector('input, select');
+        const first = invalid[0].querySelector("input, select");
         if (first) first.focus();
         return;
       }
 
       if (errorRow) errorRow.hidden = true;
 
-      // TODO: backend — POST new FormData(form) to the Cloudflare Worker,
-      // which forwards the payload into Klaviyo. On success, show the panel.
-      form.hidden = true;
-      // Remove the "Just a few details…" heading on the success state
-      document.querySelector('.signup__heading')?.setAttribute('hidden', '');
-      if (successPanel) {
-        successPanel.hidden = false;
-        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Extract Form Values
+      const formData = new FormData(form);
+      const payload = {
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: formData.get("email"),
+        country: formData.get("country"),
+        dobDay: formData.get("dobDay"),
+        dobMonth: monthMap[formData.get("dobMonth")],
+        dobYear: formData.get("dobYear"),
+        marketing: formData.get("marketing") === "on",
+      };
+
+      // Disable button while processing
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+      }
+
+      try {
+        const res = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          throw new Error("API submit failed");
+        }
+
+        // On success, render the success state
+        form.hidden = true;
+        document.querySelector(".signup__heading")?.setAttribute("hidden", "");
+        if (successPanel) {
+          successPanel.hidden = false;
+          successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      } catch (err) {
+        if (errorRow && errorText) {
+          errorText.textContent = "Something went wrong. Please try again later.";
+          errorRow.hidden = false;
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Sign up & Save the date";
+        }
       }
     });
   }
