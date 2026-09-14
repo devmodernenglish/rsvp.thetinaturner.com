@@ -1,9 +1,9 @@
 ---
-import Base from '../layouts/Base.astro';
-import SignupForm from '../components/SignupForm.astro';
+import Base from "../layouts/Base.astro";
+import SignupForm from "../components/SignupForm.astro";
 
 const intro =
-  'Join us to celebrate Tina’s 87th Birthday in Cologne on November 28. Come celebrate with live performances from special guests. More information on how to register & full event details to come soon. Hosted by fans and the Tina Turner team — we can’t wait to celebrate together!';
+  "Join us to celebrate Tina’s 87th Birthday in Cologne on November 28. Come celebrate with live performances from special guests. More information on how to register & full event details to come soon. Hosted by fans and the Tina Turner team — we can’t wait to celebrate together!";
 ---
 
 <Base>
@@ -40,7 +40,9 @@ const intro =
             fetchpriority="high"
           />
           <div class="hero__cta-m">
-            <a class="btn btn--scroll btn--scroll-mobile" href="#details">Save the date</a>
+            <a class="btn btn--scroll btn--scroll-mobile" href="#details">
+              Save the date
+            </a>
             <span class="acc acc--m-htop" aria-hidden="true"></span>
             <span class="acc acc--m-hbottom" aria-hidden="true"></span>
             <span class="acc acc--m-vright" aria-hidden="true"></span>
@@ -52,7 +54,9 @@ const intro =
              The frame lines are anchored to the button box so they wrap it
              exactly — the CTA can never burst outside the shape. -->
         <div class="hero__cta">
-          <a class="btn btn--scroll btn--scroll-desktop" href="#save-the-date">Save the date</a>
+          <a class="btn btn--scroll btn--scroll-desktop" href="#save-the-date">
+            Save the date
+          </a>
           <span class="acc acc--h-top" aria-hidden="true"></span>
           <span class="acc acc--v-left" aria-hidden="true"></span>
           <span class="acc acc--h-bottom" aria-hidden="true"></span>
@@ -79,8 +83,16 @@ const intro =
           <p>Photo credit: Paul Natkin</p>
         </div>
         <nav class="footer__links" aria-label="Legal">
-          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a>
-          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
+            Terms of Use
+          </a>
+          <a
+            href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Policy
+          </a>
         </nav>
       </footer>
     </div>
@@ -88,14 +100,7 @@ const intro =
     <!-- RIGHT COLUMN — sticky image (desktop) -->
     <aside class="visual" aria-hidden="true">
       <div class="visual__sticky">
-        <img
-          class="visual__photo"
-          src="/images/hero.webp"
-          alt=""
-          width="1400"
-          height="923"
-          loading="lazy"
-        />
+        <img class="visual__photo" src="/images/hero.webp" alt="" width="1400" height="923" loading="lazy" />
         <span class="visual__line"></span>
         <div class="date-badge">
           <p class="date-badge__date">28 November 2026</p>
