@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - production
-  workflow_dispatch: # Keeps the manual "Run workflow" button active in GitHub UI for convenience
+  workflow_dispatch: # Keeps the manual "Run workflow" button active in GitHub UI for conveniencey
 jobs:
   deploy-to-client:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
         run: npm ci
@@ -28,9 +28,9 @@ jobs:
           KLAVIYO_LIST_ID: ${{ secrets.KLAVIYO_LIST_ID }}
 
       - name: Deploy to Client Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLIENT_CF_API_TOKEN }}
           accountId: ${{ secrets.CLIENT_CF_ACCOUNT_ID }}
-          projectName: "rsvp-tinaturner-com" # Must match project name created in Step 1
-          directory: "dist"
+          # projectName: "rsvp-tinaturner-com" # Must match project name created in Step 1
+          command: pages deploy dist --project-name=rsvp-tinaturner-com --branch=main
