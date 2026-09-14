@@ -1,0 +1,523 @@
+---
+import Base from '../layouts/Base.astro';
+import SignupForm from '../components/SignupForm.astro';
+
+const intro =
+  'Join us to celebrate Tina’s 87th Birthday in Cologne on November 28. Come celebrate with live performances from special guests. More information on how to register & full event details to come soon. Hosted by fans and the Tina Turner team — we can’t wait to celebrate together!';
+---
+
+<Base>
+  <main class="page">
+    <!-- LEFT COLUMN — scrolls -->
+    <div class="content">
+      <header class="hero" id="top">
+        <div class="hero__title">
+          <img
+            class="title title--desktop"
+            src="/svg/title-desktop.svg"
+            alt="Tina 87 · Cologne 2026"
+            width="447"
+            height="640"
+          />
+          <img
+            class="title title--mobile"
+            src="/svg/title-mobile.svg"
+            alt="Tina 87 · Cologne 2026"
+            width="315"
+            height="177"
+          />
+          <img class="hero__logo" src="/svg/tina-logo.svg" alt="Tina Turner" width="339" height="248" />
+        </div>
+
+        <!-- Mobile: inline hero image with scroll button + accents -->
+        <div class="hero__media">
+          <img
+            class="hero__photo"
+            src="/images/hero-mobile.webp"
+            alt="Tina Turner performing live"
+            width="820"
+            height="541"
+            fetchpriority="high"
+          />
+          <div class="hero__cta-m">
+            <a class="btn btn--scroll btn--scroll-mobile" href="#details">Save the date</a>
+            <span class="acc acc--m-htop" aria-hidden="true"></span>
+            <span class="acc acc--m-hbottom" aria-hidden="true"></span>
+            <span class="acc acc--m-vright" aria-hidden="true"></span>
+          </div>
+        </div>
+        <span class="acc acc--m-left" aria-hidden="true"></span>
+
+        <!-- Desktop: scroll button wrapped by its accent frame.
+             The frame lines are anchored to the button box so they wrap it
+             exactly — the CTA can never burst outside the shape. -->
+        <div class="hero__cta">
+          <a class="btn btn--scroll btn--scroll-desktop" href="#save-the-date">Save the date</a>
+          <span class="acc acc--h-top" aria-hidden="true"></span>
+          <span class="acc acc--v-left" aria-hidden="true"></span>
+          <span class="acc acc--h-bottom" aria-hidden="true"></span>
+          <span class="acc acc--v-right" aria-hidden="true"></span>
+          <span class="acc acc--drop" aria-hidden="true"></span>
+        </div>
+      </header>
+
+      <!-- Mobile date band -->
+      <div class="date-band" id="details">
+        <p class="date-band__date">28 November 2026</p>
+        <p class="date-band__sub">Featuring live performance by special guests</p>
+      </div>
+
+      <section class="signup" id="save-the-date">
+        <p class="signup__intro">{intro}</p>
+        <h1 class="display signup__heading">Just a few details to save the date</h1>
+        <SignupForm />
+      </section>
+
+      <footer class="footer">
+        <div class="footer__col">
+          <p>© 2026 Tina Turner, All rights reserved.</p>
+          <p>Photo credit: Paul Natkin</p>
+        </div>
+        <nav class="footer__links" aria-label="Legal">
+          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        </nav>
+      </footer>
+    </div>
+
+    <!-- RIGHT COLUMN — sticky image (desktop) -->
+    <aside class="visual" aria-hidden="true">
+      <div class="visual__sticky">
+        <img
+          class="visual__photo"
+          src="/images/hero.webp"
+          alt=""
+          width="1400"
+          height="923"
+          loading="lazy"
+        />
+        <span class="visual__line"></span>
+        <div class="date-badge">
+          <p class="date-badge__date">28 November 2026</p>
+          <p class="date-badge__sub">Featuring live performance by special guests</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+</Base>
+
+<style>
+  /* ============================================================= *
+   * Base = mobile (single column, stacked)
+   * ============================================================= */
+  .page {
+    display: block;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Desktop-only pieces hidden on mobile */
+  .visual,
+  .hero__cta {
+    display: none;
+  }
+
+  /* ---- Hero (mobile) — matches the Figma frame: centred compact title, then
+     a full-bleed fixed-ratio photo. Natural height (~title + 430px image). --- */
+  .hero {
+    position: relative;
+  }
+
+  .hero__title {
+    position: relative;
+    width: min(315px, 84vw);
+    aspect-ratio: 315 / 177;
+    margin: 30px auto 0;
+  }
+
+  .title {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .title--desktop {
+    display: none;
+  }
+
+  .hero__logo {
+    position: absolute;
+    left: 23.5%;
+    top: 24.3%;
+    width: 47.3%;
+    height: auto;
+  }
+
+  .hero__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 375 / 430;
+    margin-top: 30px;
+  }
+
+  .hero__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% center;
+  }
+
+  .acc {
+    background: var(--blue);
+  }
+
+  /* Mobile accent frame — anchored to the CTA button (registration-mark style)
+     so the lines wrap it exactly, respecting the Figma boundaries. The left
+     vertical spans the whole hero, aligned to the button's left edge. */
+  .acc--m-left {
+    position: absolute;
+    top: 0;
+    bottom: 60px;
+    left: 45px;
+    width: 2px;
+  }
+
+  .hero__cta-m {
+    position: absolute;
+    left: 47px;
+    bottom: 60px;
+    display: flex;
+    z-index: 3;
+  }
+
+  .hero__cta-m .acc {
+    position: absolute;
+    pointer-events: none;
+  }
+  /* button top → tail right to the image edge */
+  .acc--m-htop {
+    top: 0;
+    left: 0;
+    width: calc(100vw - 47px);
+    height: 2px;
+  }
+  /* button bottom → tail left to the screen edge */
+  .acc--m-hbottom {
+    right: 0;
+    bottom: 0;
+    width: calc(100% + 47px);
+    height: 2px;
+  }
+  /* button right → tail down to the image bottom */
+  .acc--m-vright {
+    top: 0;
+    right: 0;
+    bottom: -60px;
+    width: 2px;
+  }
+
+  /* ---- Scroll button ------------------------------------------- */
+  .btn--scroll {
+    display: inline-flex;
+    padding: 16px;
+    background: var(--red);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .btn--scroll-mobile {
+    position: relative;
+  }
+
+  .btn--scroll:hover {
+    color: var(--white);
+  }
+
+  /* ---- Date band (mobile) -------------------------------------- */
+  .date-band {
+    padding: 20px 20px 24px;
+    text-align: center;
+  }
+
+  .date-band__date,
+  .date-band__sub {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .date-band__date {
+    text-transform: uppercase;
+  }
+
+  .date-band__sub {
+    margin-top: 10px;
+  }
+
+  /* ---- Signup (order: intro → heading → form) ------------------ */
+  .signup {
+    display: flex;
+    flex-direction: column;
+    padding: 48px var(--gutter-mobile) 40px;
+  }
+
+  /* Intro paragraph (desktop bumps the size to 16px) */
+  .signup__intro {
+    margin: 0 0 40px;
+    max-width: var(--content-max);
+    color: var(--white);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Heading — Acumin Pro ExtraCondensed Bold */
+  .signup__heading {
+    margin: 0 0 30px 0;
+    color: var(--white);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    max-width: var(--content-max);
+  }
+
+  /* ---- Footer -------------------------------------------------- */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 8px 8px;
+    background: var(--navy);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .footer__col p {
+    margin: 0 0 2px;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .footer__links a {
+    text-decoration: underline;
+  }
+
+  /* ============================================================= *
+   * Desktop = two columns, sticky image
+   * ============================================================= */
+  @media (min-width: 900px) {
+    /* Right panel is fixed to the viewport; the left column scrolls past it. */
+    .page {
+      display: block;
+    }
+
+    .content {
+      width: 42%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Toggle mobile vs desktop pieces */
+    .visual {
+      display: block;
+    }
+    /* flex (not block) so the wrapper hugs the button with no line-box leading —
+       the accent frame then sits exactly on the button's edges. */
+    .hero__cta {
+      display: flex;
+    }
+    .hero__media,
+    .acc--m-left,
+    .date-band {
+      display: none;
+    }
+    .title--mobile {
+      display: none;
+    }
+    .title--desktop {
+      display: block;
+    }
+
+    /* Hero fills the viewport; title near top, button/frame anchored low */
+    .hero {
+      display: block;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    /* Title scales to fill the left column (equal 40px gutters), capped by the
+       hero height so it never overflows. The logo, sized in % of this box,
+       scales with it. */
+    .hero__title {
+      width: min(100%, calc((100vh - 80px) * 447 / 640));
+      max-width: none;
+      aspect-ratio: 447 / 640;
+      margin: 0;
+    }
+
+    .hero__logo {
+      left: 8.7%;
+      top: 12.7%;
+      width: 75.8%;
+    }
+
+    /* Scroll CTA + accent frame. hero__cta shrinks to the button, and every
+       accent line is positioned against that box — so the frame wraps the
+       button exactly and the CTA can never burst outside the shape. */
+    .hero__cta {
+      position: absolute;
+      left: 91px;
+      bottom: 112px;
+      z-index: 2;
+    }
+
+    /* Explicit height so the button's top edge lands exactly on 162px from the
+       fold — the same height as the image's horizontal rule (.visual__line) —
+       so the two blue lines meet precisely across the content/image seam. */
+    .btn--scroll-desktop {
+      position: relative;
+      box-sizing: border-box;
+      height: 52px;
+      padding: 0 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero__cta .acc {
+      position: absolute;
+      pointer-events: none;
+    }
+    /* top edge of the button → tail extends right to the column edge */
+    .hero__cta .acc--h-top {
+      top: 0;
+      left: 0;
+      width: calc(42vw - 91px);
+      height: 2px;
+    }
+    /* left edge of the button → tail extends up to the top of the hero */
+    .hero__cta .acc--v-left {
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      height: calc(100vh - 112px);
+    }
+    /* bottom edge of the button → tail extends left to the screen edge */
+    .hero__cta .acc--h-bottom {
+      right: 0;
+      bottom: 0;
+      width: calc(100% + 91px);
+      height: 2px;
+    }
+    /* right edge of the button → tail drops down to the fold */
+    .hero__cta .acc--v-right {
+      right: 0;
+      top: 0;
+      width: 2px;
+      height: 164px;
+    }
+    /* continuation of the drop line, fading just past the hero */
+    .hero__cta .acc--drop {
+      right: 0;
+      top: 164px;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--blue), rgba(0, 173, 238, 0));
+    }
+
+    .signup {
+      padding: 80px var(--gutter) 48px;
+    }
+
+    .signup__intro {
+      font-size: 16px;
+    }
+
+    /* Right column — fixed full-height panel, pinned while the left scrolls */
+    .visual {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 58%;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .visual__sticky {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .visual__photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 60% center;
+    }
+
+    /* Sits at the same height as the button-top accent (hero__cta bottom 110px
+       + ~52px button = 162px) so the line reads as one continuous rule across
+       the content/image seam, with the button hanging below it on the left and
+       the date badge hanging below it on the right. */
+    .visual__line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 162px;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    /* Badge hangs below the line: its top edge meets the rule at 162px. */
+    .date-badge {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 162px;
+      width: 45%;
+      min-width: 300px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--black);
+      border-left: 2px solid var(--blue);
+      text-align: center;
+    }
+
+    .date-badge__date,
+    .date-badge__sub {
+      margin: 0;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .date-badge__date {
+      text-transform: uppercase;
+    }
+
+    .date-badge__sub {
+      margin-top: 10px;
+    }
+  }
+</style>

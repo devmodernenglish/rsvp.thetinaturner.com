@@ -1,0 +1,476 @@
+---
+// Sign-up form for the "Save the date" section.
+//
+// NOTE: intentionally NOT wired to a backend. Submitting runs client-side
+// validation only and, when valid, swaps in the success panel. The real
+// submit will POST to a Cloudflare Worker that forwards into Klaviyo — the
+// hook for that lives in the <script> below (see `TODO: backend`).
+
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+// A short, representative country list — extend as needed.
+const countries = [
+  'United Kingdom', 'Germany', 'United States', 'France', 'Netherlands',
+  'Belgium', 'Switzerland', 'Austria', 'Ireland', 'Spain', 'Italy',
+  'Sweden', 'Denmark', 'Norway', 'Australia', 'Canada', 'Other',
+];
+---
+
+<div class="signup__body" data-signup>
+  <form class="form" novalidate data-form>
+    <div class="field" data-field>
+      <label class="field__label" for="firstName">First name</label>
+      <input
+        class="field__input"
+        id="firstName"
+        name="firstName"
+        type="text"
+        placeholder="Type Here"
+        autocomplete="given-name"
+        required
+      />
+    </div>
+
+    <div class="field" data-field>
+      <label class="field__label" for="lastName">Last name</label>
+      <input
+        class="field__input"
+        id="lastName"
+        name="lastName"
+        type="text"
+        placeholder="Type Here"
+        autocomplete="family-name"
+        required
+      />
+    </div>
+
+    <div class="field" data-field>
+      <label class="field__label" for="email">Email</label>
+      <input
+        class="field__input"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Type Here"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="field field--select" data-field>
+      <label class="field__label" for="country">Country</label>
+      <select class="field__input field__select" id="country" name="country" required>
+        <option value="" disabled selected>Please select</option>
+        {countries.map((c) => <option value={c}>{c}</option>)}
+      </select>
+      <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
+    </div>
+
+    <fieldset class="field-group" data-field>
+      <legend class="field__label">Date of birth</legend>
+      <div class="dob">
+        <div class="field field--sub">
+          <label class="field__label field__label--sm" for="dobDay">Day</label>
+          <input
+            class="field__input"
+            id="dobDay"
+            name="dobDay"
+            type="text"
+            inputmode="numeric"
+            maxlength="2"
+            placeholder="Type Here"
+            required
+          />
+        </div>
+        <div class="field field--sub field--select">
+          <label class="field__label field__label--sm" for="dobMonth">Month</label>
+          <select class="field__input field__select" id="dobMonth" name="dobMonth" required>
+            <option value="" disabled selected>Please select</option>
+            {months.map((m) => <option value={m}>{m}</option>)}
+          </select>
+          <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
+        </div>
+        <div class="field field--sub">
+          <label class="field__label field__label--sm" for="dobYear">Year</label>
+          <input
+            class="field__input"
+            id="dobYear"
+            name="dobYear"
+            type="text"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="Type Here"
+            required
+          />
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="checks">
+      <label class="check">
+        <input class="check__input" type="checkbox" name="marketing" />
+        <span class="check__box" aria-hidden="true"></span>
+        <span class="check__text">
+          I want to receive updates and marketing communication from
+          <a href="#">Tina Turner</a>. By signing up you agree to the Tina Turner
+          <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a>. For information on how we process your personal
+          data please see our <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. You can unsubscribe at any time.
+        </span>
+      </label>
+
+      <label class="check" data-field>
+        <input class="check__input" type="checkbox" name="terms" required />
+        <span class="check__box" aria-hidden="true"></span>
+        <span class="check__text">*I agree to the Tina Turner <a href="https://thetinaturner.com/pages/tina-turner-privacy-policy" target="_blank" rel="noopener noreferrer">Terms of Use</a></span>
+      </label>
+    </div>
+
+    <button class="btn btn--submit" type="submit">Sign up &amp; Save the date</button>
+
+    <p class="form__error" data-error hidden>
+      <img class="form__error-icon" src="/svg/error.svg" alt="" aria-hidden="true" width="24" height="24" />
+      <span data-error-text>Please complete all mandatory fields</span>
+    </p>
+  </form>
+
+  <div class="success" data-success hidden>
+    <p class="display success__title">Success!</p>
+    <div class="success__body">
+      <p>We’ll email you if you’re successful getting tickets to Tina’s 87th Birthday in Cologne.</p>
+      <p>If you’re not one of the lucky ones, you’ll still receive a unique link to watch the celebrations live from home.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .signup__body {
+    width: 100%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* Higher specificity than `.form` so the native hidden attribute wins */
+  .form[hidden] {
+    display: none;
+  }
+
+  /* --- Fields ------------------------------------------------------- */
+  .field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--blue);
+  }
+
+  .field-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .field__label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--white);
+    padding: 0;
+  }
+
+  .field__label--sm {
+    font-weight: 400;
+  }
+
+  .field__input {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+    appearance: none;
+  }
+
+  .field__input::placeholder {
+    color: var(--white);
+    opacity: 1;
+  }
+
+  .field__select {
+    padding-right: 24px;
+    cursor: pointer;
+  }
+
+  /* Style the dropdown list itself (black on select styling is limited) */
+  .field__select option {
+    color: #000;
+    background: #fff;
+  }
+
+  .field__arrow {
+    position: absolute;
+    right: 2px;
+    bottom: 14px;
+    width: 12px;
+    height: 6px;
+    pointer-events: none;
+  }
+
+  /* State: active / typing -> white underline (overrides default blue) */
+  .field:focus-within {
+    border-bottom-color: var(--white);
+  }
+
+  /* State: validation error -> red underline (on a field, or the sub-fields
+     inside an errored date-of-birth group whose wrapper carries is-error) */
+  .field.is-error,
+  .field-group.is-error .field {
+    border-bottom-color: var(--red);
+  }
+  /* Focus still wins visually while the user is fixing the field */
+  .field.is-error:focus-within,
+  .field-group.is-error .field:focus-within {
+    border-bottom-color: var(--white);
+  }
+
+  /* --- Date of birth row ------------------------------------------- */
+  .dob {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+
+  .field--sub {
+    gap: 4px;
+    flex: 0 0 80px;
+  }
+
+  .field--sub:nth-child(2) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* --- Checkboxes --------------------------------------------------- */
+  .checks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .check {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+
+  .check__input {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .check__box {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--white);
+    position: relative;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+
+  .check__input:checked + .check__box {
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+
+  .check__input:checked + .check__box::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .check__input:focus-visible + .check__box {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+  }
+
+  .check.is-error .check__box {
+    border-color: var(--red);
+  }
+
+  .check__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .check__text a {
+    text-decoration: underline;
+  }
+
+  /* --- Submit + error ---------------------------------------------- */
+  .btn--submit {
+    width: 100%;
+    padding: 16px;
+    border: 0;
+    background: var(--red);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: color 0.3s ease;
+  }
+
+  .btn--submit:hover {
+    color: var(--white);
+  }
+
+  .form__error {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .form__error[hidden] {
+    display: none;
+  }
+
+  .form__error-icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* --- Success panel ------------------------------------------------ */
+  .success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 32px 20px 40px;
+    border: 1px solid var(--blue);
+    text-align: center;
+  }
+
+  .success[hidden] {
+    display: none;
+  }
+
+  .success__title {
+    font-size: 46px;
+    letter-spacing: -0.03em;
+  }
+
+  .success__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .success__body p {
+    margin: 0;
+  }
+</style>
+
+<script>
+  const form = document.querySelector('[data-form]');
+  const errorRow = document.querySelector('[data-error]');
+  const errorText = document.querySelector('[data-error-text]');
+  const successPanel = document.querySelector('[data-success]');
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (form) {
+    // Clear a field's error state as soon as the user interacts with it.
+    form.addEventListener('input', (event) => {
+      const container = event.target.closest('[data-field]');
+      if (container) container.classList.remove('is-error');
+      // Hide the summary error once no fields remain in error.
+      if (!form.querySelector('.is-error') && errorRow) errorRow.hidden = true;
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const invalid = [];
+      form.querySelectorAll('[data-field]').forEach((container) => {
+        container.classList.remove('is-error');
+
+        let ok = true;
+        container.querySelectorAll('input, select').forEach((control) => {
+          if (!control.required) return;
+          if (control.type === 'checkbox') {
+            if (!control.checked) ok = false;
+          } else if (!control.value.trim()) {
+            ok = false;
+          } else if (control.type === 'email' && !emailPattern.test(control.value)) {
+            ok = false;
+          }
+        });
+
+        if (!ok) {
+          container.classList.add('is-error');
+          invalid.push(container);
+        }
+      });
+
+      if (invalid.length > 0) {
+        if (errorRow && errorText) {
+          errorText.textContent = 'Please complete all mandatory fields';
+          errorRow.hidden = false;
+        }
+        const first = invalid[0].querySelector('input, select');
+        if (first) first.focus();
+        return;
+      }
+
+      if (errorRow) errorRow.hidden = true;
+
+      // TODO: backend — POST new FormData(form) to the Cloudflare Worker,
+      // which forwards the payload into Klaviyo. On success, show the panel.
+      form.hidden = true;
+      // Remove the "Just a few details…" heading on the success state
+      document.querySelector('.signup__heading')?.setAttribute('hidden', '');
+      if (successPanel) {
+        successPanel.hidden = false;
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+</script>

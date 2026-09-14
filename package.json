@@ -1,0 +1,22 @@
+{
+  "name": "tina-turner-birthday",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "12",
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.0"
+  }
+}

@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Tina Turner — 87th Birthday · Cologne 2026',
+  description = 'Join us to celebrate Tina’s 87th Birthday in Cologne on 28 November 2026, with live performances from special guests. Save the date.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Google Tag Manager (loaded after the page paints so it stays off the
+         critical path; dataLayer is available immediately for early events) -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var loaded = false;
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        }
+        if (d.readyState === 'complete') load();
+        else w.addEventListener('load', load);
+        // safety net: also load on first interaction
+        ['scroll', 'pointerdown', 'keydown'].forEach(function (e) {
+          w.addEventListener(e, load, { once: true, passive: true });
+        });
+      })(window, document, 'script', 'dataLayer', 'GTM-WVBVQ7XM');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Favicons (Tina Turner mark) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / social share -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/share-image.png', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={Astro.site} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/share-image.png', Astro.site)} />
+
+    <!-- Preload the LCP hero image (per breakpoint) -->
+    <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 899px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero.webp" media="(min-width: 900px)" fetchpriority="high" />
+
+    <!-- Brand fonts (Adobe Fonts) — loaded non-render-blocking; text shows in the
+         fallback stack immediately, then swaps to Acumin/Futura when the kit loads -->
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://use.typekit.net/gyk8xkn.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/gyk8xkn.css" /></noscript>
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WVBVQ7XM"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+    <slot />
+  </body>
+</html>
