@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = 'Tina Turner — 87th Birthday · Cologne 2026',
-  description = 'Join us to celebrate Tina’s 87th Birthday in Cologne on 28 November 2026, with live performances from special guests. Save the date.',
+  title = "Tina Turner — 87th Birthday · Cologne 2026",
+  description = "Join us to celebrate Tina’s 87th Birthday in Cologne on 28 November 2026, with live performances from special guests. Save the date.",
 } = Astro.props;
 ---
 
@@ -22,25 +22,25 @@ const {
     <script is:inline>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var loaded = false;
         function load() {
           if (loaded) return;
           loaded = true;
           var f = d.getElementsByTagName(s)[0],
             j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
+            dl = l != "dataLayer" ? "&l=" + l : "";
           j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
           f.parentNode.insertBefore(j, f);
         }
-        if (d.readyState === 'complete') load();
-        else w.addEventListener('load', load);
+        if (d.readyState === "complete") load();
+        else w.addEventListener("load", load);
         // safety net: also load on first interaction
-        ['scroll', 'pointerdown', 'keydown'].forEach(function (e) {
+        ["scroll", "pointerdown", "keydown"].forEach(function (e) {
           w.addEventListener(e, load, { once: true, passive: true });
         });
-      })(window, document, 'script', 'dataLayer', 'GTM-WVBVQ7XM');
+      })(window, document, "script", "dataLayer", "GTM-WVBVQ7XM");
     </script>
     <!-- End Google Tag Manager -->
 
@@ -56,15 +56,16 @@ const {
     <!-- Open Graph / social share -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
+    <meta property="og:site_name" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/share-image.png', Astro.site)} />
+    <meta property="og:image" content={new URL("/share-image.png", Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={Astro.site} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/share-image.png', Astro.site)} />
+    <meta name="twitter:image" content={new URL("/share-image.png", Astro.site)} />
 
     <!-- Preload the LCP hero image (per breakpoint) -->
     <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 899px)" fetchpriority="high" />
@@ -80,19 +81,22 @@ const {
       href="https://use.typekit.net/gyk8xkn.css"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/gyk8xkn.css" /></noscript>
+    <noscript>
+      <link rel="stylesheet" href="https://use.typekit.net/gyk8xkn.css" />
+    </noscript>
 
     <title>{title}</title>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
+    <noscript>
+      <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WVBVQ7XM"
         height="0"
         width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <slot />
   </body>
