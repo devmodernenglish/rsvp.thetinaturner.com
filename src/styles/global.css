@@ -28,8 +28,8 @@
   /* Layout */
   --content-max: 447px;
   --gutter: 40px;
-  --gutter-mobile: 20px;
   --breakpoint: 900px;
+  --gutter-mobile: 20px;
 }
 
 *,
