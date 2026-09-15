@@ -17,8 +17,12 @@
   --navy: #173f5f;
 
   /* Fonts — real brand faces (Adobe Fonts) with web-font fallbacks */
-  --font-body: "futura-pt", "Jost", "Century Gothic", system-ui, sans-serif;
-  --font-bold: "futura-pt-bold", "sans-serif";
+  /*--font-body: "futura-pt", "Jost", "Century Gothic", system-ui, sans-serif;
+  --font-bold: "futura-pt-bold", "sans-serif";*/
+
+  --font-body: "futura-100", "Jost", "Century Gothic", system-ui, sans-serif;
+  --font-bold: "futura-100", "sans-serif";
+
   --font-display: "acumin-pro-extra-condensed", "Saira Extra Condensed", "Arial Narrow", sans-serif;
 
   /* Layout */
