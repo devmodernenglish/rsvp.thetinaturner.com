@@ -46,7 +46,10 @@ const countries = [
 <div class="signup__body" data-signup>
   <form class="form" novalidate data-form>
     <div class="field" data-field>
-      <label class="field__label" for="firstName"> First name </label>
+      <label class="field__label" for="firstName">
+        {" "}
+        First name{" "}
+      </label>
       <input
         class="field__input"
         id="firstName"
@@ -59,7 +62,10 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="lastName"> Last name </label>
+      <label class="field__label" for="lastName">
+        {" "}
+        Last name{" "}
+      </label>
       <input
         class="field__input"
         id="lastName"
@@ -72,7 +78,10 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="email"> Email </label>
+      <label class="field__label" for="email">
+        {" "}
+        Email{" "}
+      </label>
       <input
         class="field__input"
         id="email"
@@ -85,15 +94,22 @@ const countries = [
     </div>
 
     <div class="field field--select" data-field>
-      <label class="field__label" for="country"> Country </label>
+      <label class="field__label" for="country">
+        {" "}
+        Country{" "}
+      </label>
       <select
         class="field__input field__select"
         id="country"
         name="country"
         required
       >
-        <option value="" disabled selected> Please select </option>
-        {countries.map((c) => <option value={c}>{c}</option>)}
+        <option value="" disabled selected>
+          Please select
+        </option>
+        {countries.map((c) => (
+          <option value={c}>{c}</option>
+        ))}
       </select>
       <img
         class="field__arrow"
@@ -133,8 +149,12 @@ const countries = [
             name="dobMonth"
             required
           >
-            <option value="" disabled selected> Please select </option>
-            {months.map((m) => <option value={m}>{m}</option>)}
+            <option value="" disabled selected>
+              Please select
+            </option>
+            {months.map((m) => (
+              <option value={m}>{m}</option>
+            ))}
           </select>
           <img
             class="field__arrow"
@@ -173,15 +193,19 @@ const countries = [
           <a
             href="https://whynowmusic.com/termsandconditions/"
             target="_blank"
-            rel="noopener noreferrer">Terms of Use</a
-          >. For information on how we process your personal data please see our{
-            " "
-          }
+            rel="noopener noreferrer"
+          >
+            Terms of Use
+          </a>
+          . For information on how we process your personal data please see our{" "}
           <a
             href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
             target="_blank"
-            rel="noopener noreferrer">Privacy Policy</a
-          >. You can unsubscribe at any time.
+            rel="noopener noreferrer"
+          >
+            Privacy Policy
+          </a>
+          . You can unsubscribe at any time.
         </span>
       </label>
 
@@ -209,7 +233,9 @@ const countries = [
       pose for photos and inform our staff.
     </p>
 
-    <button class="btn btn--submit" type="submit"> Reserve my spot </button>
+    <button class="btn btn--submit" type="submit">
+      Reserve my spot
+    </button>
 
     <p class="form__error" data-error hidden>
       <img
@@ -616,6 +642,21 @@ const countries = [
 
         if (!res.ok) {
           throw new Error("API submit failed");
+        }
+
+        const amber = window.amberInstance;
+        if (amber && typeof amber.identify === "function") {
+          amber.identify("identify", {
+            email: payload.email,
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            country: payload.country,
+            dob: `${payload.dobYear}-${payload.dobMonth}-${payload.dobDay}`,
+            source: "manual",
+          });
+
+          // Track form conversion event
+          amber.track("register");
         }
 
         // On success, render the success state
