@@ -3,8 +3,8 @@ import Base from "../layouts/Base.astro";
 import SignupForm from "../components/SignupForm.astro";
 
 const intro = [
-  "This 28 November, we’re celebrating Tina’s 87th birthday in the best way we know how, by bringing her fans together for a night filled with her music, her spirit and plenty of love. Join us at Söckchen, a cosy riverside Kölsch pub in the heart of Cologne’s old town, for live performances, a fan DJ playing Tina favorites all night and the chance to celebrate alongside others who share your love for her.",
-  "Entry is free, with food and drinks available to purchase at the venue. Spaces are limited, so register your interest below. We’ll be in touch by email within a few days to confirm your place.",
+  "This 28 November, we're celebrating Tina's 87th birthday in the best way we know how, by bringing her fans together for a night filled with her music, her spirit and plenty of love. Join us at Söckchen, a cosy riverside Kölsch pub in the heart of Cologne's old town, for live performances, a fan DJ playing Tina favorites all night and the chance to celebrate alongside others who share your love for her.",
+  "Entry is free, with food and drinks available to purchase at the venue. Spaces are limited, so register your interest below. We'll be in touch by email within a few days to confirm your place.",
 ];
 
 const sections = [
@@ -25,7 +25,7 @@ const sections = [
       },
       {
         title: "Fan DJ.",
-        text: "Tina’s greatest hits, fan favorites and deep cuts will keep the celebration going between the live performances.",
+        text: "Tina's greatest hits, fan favorites and deep cuts will keep the celebration going between the live performances.",
       },
     ],
   },
@@ -34,11 +34,11 @@ const sections = [
     items: [
       {
         title: "Entry is free.",
-        text: "There’s no ticket price, with food and drinks available to purchase at the venue. You’ll need a confirmed place to join us.",
+        text: "There's no ticket price, with food and drinks available to purchase at the venue. You'll need a confirmed place to join us.",
       },
       {
         title: "How to reserve your place.",
-        text: "Register your interest using the form below. Spaces are limited, and we’ll be in touch by email within a few days to confirm your place. Please wait until you’ve received your confirmation before making plans to travel to Cologne.",
+        text: "Register your interest using the form below. Spaces are limited, and we'll be in touch by email within a few days to confirm your place. Please wait until you've received your confirmation before making plans to travel to Cologne.",
       },
       {
         title: "Age requirement.",
@@ -46,7 +46,7 @@ const sections = [
       },
       {
         title: "Getting there.",
-        text: "Söckchen is just a few minutes’ walk from Köln Hauptbahnhof and Cologne Cathedral.",
+        text: "Söckchen is just a few minutes' walk from Köln Hauptbahnhof and Cologne Cathedral.",
       },
       {
         title: "Questions?",
@@ -78,7 +78,13 @@ const sections = [
             width="315"
             height="177"
           />
-          <img class="hero__logo" src="/svg/tina-logo.svg" alt="Tina Turner" width="339" height="248" />
+          <img
+            class="hero__logo"
+            src="/svg/tina-logo.svg"
+            alt="Tina Turner"
+            width="339"
+            height="248"
+          />
         </div>
 
         <!-- Mobile: inline hero image with scroll button + accents -->
@@ -122,7 +128,9 @@ const sections = [
         <p class="date-band__date">Saturday, 28 November 2026 8PM</p>
         <p class="date-band__sub">Cologne, Germany: Söckchen Altstadtkneipe</p>
         <p class="date-band__sub">Free entry, spots are limited</p>
-        <p class="date-band__sub">Live performances by Chanel Haynes and Donovan Marcelle</p>
+        <p class="date-band__sub">
+          Live performances by Chanel Haynes and Donovan Marcelle
+        </p>
       </div>
 
       <section class="signup" id="save-the-date">
@@ -149,7 +157,9 @@ const sections = [
             </>
           ))
         }
-        <h1 class="display signup__heading" data-form-heading>Reserve your spot</h1>
+        <h1 class="display signup__heading" data-form-heading>
+          Reserve your spot
+        </h1>
         <SignupForm />
       </section>
 
@@ -159,7 +169,11 @@ const sections = [
           <p>Photo credit: Paul Natkin</p>
         </div>
         <nav class="footer__links" aria-label="Legal">
-          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://whynowmusic.com/termsandconditions/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Terms of Use
           </a>
           <a
@@ -176,13 +190,24 @@ const sections = [
     <!-- RIGHT COLUMN — sticky image (desktop) -->
     <aside class="visual" aria-hidden="true">
       <div class="visual__sticky">
-        <img class="visual__photo" src="/images/hero.webp" alt="" width="1400" height="923" loading="lazy" />
+        <img
+          class="visual__photo"
+          src="/images/hero.webp"
+          alt=""
+          width="1400"
+          height="923"
+          loading="lazy"
+        />
         <span class="visual__line"></span>
         <div class="date-badge">
           <p class="date-badge__date">Saturday, 28 November 2026 8PM</p>
-          <p class="date-badge__sub">Cologne, Germany: Söckchen Altstadtkneipe</p>
+          <p class="date-badge__sub">
+            Cologne, Germany: Söckchen Altstadtkneipe
+          </p>
           <p class="date-badge__sub">Free entry, spots are limited</p>
-          <p class="date-badge__sub">Live performances by Chanel Haynes and Donovan Marcelle</p>
+          <p class="date-badge__sub">
+            Live performances by Chanel Haynes and Donovan Marcelle
+          </p>
         </div>
       </div>
     </aside>
