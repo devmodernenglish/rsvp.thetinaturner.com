@@ -30,10 +30,12 @@ const gatewayUrl =
 
     const gatewayUrl =
       configEl.dataset.gatewayUrl || "https://amber-stage.modeng.dev";
+
     const brand = configEl.dataset.brand || "tina-turner";
     const property = configEl.dataset.property || "micro-site";
 
     const baseUrl = gatewayUrl.replace(/\/+$/, "");
+    const apiUrl = `${baseUrl}/api`;
     const sdkScriptUrl = `${baseUrl}/amber.iife.js`;
 
     if (document.getElementById("amber-sdk-script")) return;
@@ -56,7 +58,7 @@ const gatewayUrl =
           clearInterval(checkGlobal);
 
           try {
-            const amberInstance = new GlobalClass({ baseUrl });
+            const amberInstance = new GlobalClass({ apiUrl });
             await amberInstance.init(
               { tenant: "pophouse", brand, property },
               { debug: import.meta.env.DEV },
