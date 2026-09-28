@@ -4,7 +4,7 @@
 // NOTE: intentionally NOT wired to a backend. Submitting runs client-side
 // validation only and, when valid, swaps in the success panel. The real
 // submit will POST to a Cloudflare Worker that forwards into Klaviyo — the
-// hook for that lives in the <script> below (see `TODO: backend`).
+// hook for that lives in the client script below (see `TODO: backend`).
 
 const months = [
   "January",
@@ -46,9 +46,7 @@ const countries = [
 <div class="signup__body" data-signup>
   <form class="form" novalidate data-form>
     <div class="field" data-field>
-      <label class="field__label" for="firstName">
-        First name
-      </label>
+      <label class="field__label" for="firstName"> First name </label>
       <input
         class="field__input"
         id="firstName"
@@ -61,9 +59,7 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="lastName">
-        Last name
-      </label>
+      <label class="field__label" for="lastName"> Last name </label>
       <input
         class="field__input"
         id="lastName"
@@ -76,9 +72,7 @@ const countries = [
     </div>
 
     <div class="field" data-field>
-      <label class="field__label" for="email">
-        Email
-      </label>
+      <label class="field__label" for="email"> Email </label>
       <input
         class="field__input"
         id="email"
@@ -91,18 +85,24 @@ const countries = [
     </div>
 
     <div class="field field--select" data-field>
-      <label class="field__label" for="country">
-        Country
-      </label>
-      <select class="field__input field__select" id="country" name="country" required>
-        <option value="" disabled selected>
-          Please select
-        </option>
-        {countries.map((c) => (
-          <option value={c}>{c}</option>
-        ))}
+      <label class="field__label" for="country"> Country </label>
+      <select
+        class="field__input field__select"
+        id="country"
+        name="country"
+        required
+      >
+        <option value="" disabled selected> Please select </option>
+        {countries.map((c) => <option value={c}>{c}</option>)}
       </select>
-      <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
+      <img
+        class="field__arrow"
+        src="/svg/dropdown.svg"
+        alt=""
+        aria-hidden="true"
+        width="12"
+        height="6"
+      />
     </div>
 
     <fieldset class="field-group" data-field>
@@ -127,15 +127,23 @@ const countries = [
           <label class="field__label field__label--sm" for="dobMonth">
             Month
           </label>
-          <select class="field__input field__select" id="dobMonth" name="dobMonth" required>
-            <option value="" disabled selected>
-              Please select
-            </option>
-            {months.map((m) => (
-              <option value={m}>{m}</option>
-            ))}
+          <select
+            class="field__input field__select"
+            id="dobMonth"
+            name="dobMonth"
+            required
+          >
+            <option value="" disabled selected> Please select </option>
+            {months.map((m) => <option value={m}>{m}</option>)}
           </select>
-          <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
+          <img
+            class="field__arrow"
+            src="/svg/dropdown.svg"
+            alt=""
+            aria-hidden="true"
+            width="12"
+            height="6"
+          />
         </div>
         <div class="field field--sub">
           <label class="field__label field__label--sm" for="dobYear">
@@ -160,20 +168,20 @@ const countries = [
         <input class="check__input" type="checkbox" name="marketing" />
         <span class="check__box" aria-hidden="true"></span>
         <span class="check__text">
-          I want to receive updates and marketing communication from Tina Turner. By signing up you agree to the Tina
-          Turner
-          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
-            Terms of Use
-          </a>
-          . For information on how we process your personal data please see our{" "}
+          I want to receive updates and marketing communication from Tina
+          Turner. By signing up you agree to the Tina Turner
+          <a
+            href="https://whynowmusic.com/termsandconditions/"
+            target="_blank"
+            rel="noopener noreferrer">Terms of Use</a
+          >. For information on how we process your personal data please see our{
+            " "
+          }
           <a
             href="https://thetinaturner.com/pages/tina-turner-privacy-policy"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            Privacy Policy
-          </a>
-          . You can unsubscribe at any time.
+            rel="noopener noreferrer">Privacy Policy</a
+          >. You can unsubscribe at any time.
         </span>
       </label>
 
@@ -182,29 +190,50 @@ const countries = [
         <span class="check__box" aria-hidden="true"></span>
         <span class="check__text">
           *I agree to the Tina Turner{" "}
-          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://whynowmusic.com/termsandconditions/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Terms of Use
           </a>
         </span>
       </label>
     </div>
 
-    <button class="btn btn--submit" type="submit">
-      Sign up &amp; Save the date
-    </button>
+    <p class="form__notice">
+      If successful on getting tickets, you expressly consent to the possibility
+      of being filmed or photographed by our team, and that this material may be
+      used on our social media or other channels for advertising/commercial
+      purposes. If you do not wish to be filmed or photographed, please do not
+      pose for photos and inform our staff.
+    </p>
+
+    <button class="btn btn--submit" type="submit"> Reserve my spot </button>
 
     <p class="form__error" data-error hidden>
-      <img class="form__error-icon" src="/svg/error.svg" alt="" aria-hidden="true" width="24" height="24" />
+      <img
+        class="form__error-icon"
+        src="/svg/error.svg"
+        alt=""
+        aria-hidden="true"
+        width="24"
+        height="24"
+      />
       <span data-error-text>Please complete all mandatory fields</span>
     </p>
   </form>
 
   <div class="success" data-success hidden>
-    <p class="display success__title">Success!</p>
+    <p class="display success__title">Received!</p>
     <div class="success__body">
-      <p>Thanks for registering your interest in Tina's birthday celebration.</p>
       <p>
-        Make sure to confirm your subscription so you don't miss any updates. 
+        Thank you, your reservation request is in. Make sure to confirm your
+        subscription so you don't miss any updates.
+      </p>
+      <p>
+        Spots are limited, so keep an eye on your inbox: if you've got a spot,
+        you'll hear from us within a few days.
       </p>
     </div>
   </div>
@@ -404,6 +433,16 @@ const countries = [
     text-decoration: underline;
   }
 
+  .form__notice {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .form__notice a {
+    text-decoration: underline;
+  }
+
   /* --- Submit + error ---------------------------------------------- */
   .btn--submit {
     width: 100%;
@@ -523,7 +562,10 @@ const countries = [
             if (!control.checked) ok = false;
           } else if (!control.value.trim()) {
             ok = false;
-          } else if (control.type === "email" && !emailPattern.test(control.value)) {
+          } else if (
+            control.type === "email" &&
+            !emailPattern.test(control.value)
+          ) {
             ok = false;
           }
         });
@@ -578,20 +620,23 @@ const countries = [
 
         // On success, render the success state
         form.hidden = true;
-        document.querySelector(".signup__heading")?.setAttribute("hidden", "");
+        document
+          .querySelector("[data-form-heading]")
+          ?.setAttribute("hidden", "");
         if (successPanel) {
           successPanel.hidden = false;
           successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       } catch (err) {
         if (errorRow && errorText) {
-          errorText.textContent = "Something went wrong. Please try again later.";
+          errorText.textContent =
+            "Something went wrong. Please try again later.";
           errorRow.hidden = false;
         }
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = "Sign up & Save the date";
+          submitBtn.textContent = "Reserve my spot";
         }
       }
     });

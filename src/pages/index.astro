@@ -2,8 +2,60 @@
 import Base from "../layouts/Base.astro";
 import SignupForm from "../components/SignupForm.astro";
 
-const intro =
-  "Join us to celebrate Tina’s 87th Birthday in Cologne on November 28. Come celebrate with live performances from special guests. More information on how to register & full event details to come soon. Hosted by fans and the Tina Turner team — we can’t wait to celebrate together!";
+const intro = [
+  "This 28 November, we're celebrating Tina's 87th birthday in the best way we know how, by bringing her fans together for a night filled with her music, her spirit and plenty of love. Join us at Söckchen, a cosy riverside Kölsch pub in the heart of Cologne's old town, for live performances, a fan DJ playing Tina favorites all night and the chance to celebrate alongside others who share your love for her.",
+  "Entry is free, with food and drinks available to purchase at the venue. Spaces are limited, so register your interest below. We'll be in touch by email within a few days to confirm your place.",
+];
+
+const sections = [
+  {
+    heading: "The night",
+    items: [
+      {
+        title: "Doors open at 8PM.",
+        text: "Arrive, grab a drink and meet fellow fans before a warm welcome from your superfan hosts and the Tina Turner team.",
+      },
+      {
+        title: "Chanel Haynes live.",
+        text: "The star of TINA – The Tina Turner Musical, will be joining us for the celebration, treating fans to a special performance.",
+      },
+      {
+        title: "Donovan Marcelle live.",
+        text: "A fan invited on stage to perform with Tina returns to the stage to help celebrate her birthday.",
+      },
+      {
+        title: "Fan DJ.",
+        text: "Tina's greatest hits, fan favorites and deep cuts will keep the celebration going between the live performances.",
+      },
+    ],
+  },
+  {
+    heading: "Good to know",
+    items: [
+      {
+        title: "Entry is free.",
+        text: "There's no ticket price, with food and drinks available to purchase at the venue. You'll need a confirmed place to join us.",
+      },
+      {
+        title: "How to reserve your place.",
+        text: "Register your interest using the form below. Spaces are limited, and we'll be in touch by email within a few days to confirm your place. Please wait until you've received your confirmation before making plans to travel to Cologne.",
+      },
+      {
+        title: "Age requirement.",
+        text: "Guests must be 18 or over.",
+      },
+      {
+        title: "Getting there.",
+        text: "Söckchen is just a few minutes' walk from Köln Hauptbahnhof and Cologne Cathedral.",
+      },
+      {
+        title: "Questions?",
+        text: "Get in touch at",
+        email: "info@tinaturner.com",
+      },
+    ],
+  },
+];
 ---
 
 <Base>
@@ -26,7 +78,13 @@ const intro =
             width="315"
             height="177"
           />
-          <img class="hero__logo" src="/svg/tina-logo.svg" alt="Tina Turner" width="339" height="248" />
+          <img
+            class="hero__logo"
+            src="/svg/tina-logo.svg"
+            alt="Tina Turner"
+            width="339"
+            height="248"
+          />
         </div>
 
         <!-- Mobile: inline hero image with scroll button + accents -->
@@ -41,7 +99,7 @@ const intro =
           />
           <div class="hero__cta-m">
             <a class="btn btn--scroll btn--scroll-mobile" href="#details">
-              Save the date
+              Reserve your spot
             </a>
             <span class="acc acc--m-htop" aria-hidden="true"></span>
             <span class="acc acc--m-hbottom" aria-hidden="true"></span>
@@ -55,7 +113,7 @@ const intro =
              exactly — the CTA can never burst outside the shape. -->
         <div class="hero__cta">
           <a class="btn btn--scroll btn--scroll-desktop" href="#save-the-date">
-            Save the date
+            Reserve your spot
           </a>
           <span class="acc acc--h-top" aria-hidden="true"></span>
           <span class="acc acc--v-left" aria-hidden="true"></span>
@@ -67,13 +125,41 @@ const intro =
 
       <!-- Mobile date band -->
       <div class="date-band" id="details">
-        <p class="date-band__date">28 November 2026</p>
-        <p class="date-band__sub">Featuring live performance by special guests</p>
+        <p class="date-band__date">Saturday, 28 November 2026 8PM</p>
+        <p class="date-band__sub">Cologne, Germany: Söckchen Altstadtkneipe</p>
+        <p class="date-band__sub">Free entry, spots are limited</p>
+        <p class="date-band__sub">
+          Live performances by Chanel Haynes and Donovan Marcelle
+        </p>
       </div>
 
       <section class="signup" id="save-the-date">
-        <p class="signup__intro">{intro}</p>
-        <h1 class="display signup__heading">Just a few details to save the date</h1>
+        <div class="signup__intro">
+          {intro.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        {
+          sections.map((section) => (
+            <>
+              <h2 class="display signup__heading">{section.heading}</h2>
+              <div class="signup__intro">
+                {section.items.map((item) => (
+                  <p>
+                    <strong>{item.title}</strong> {item.text}
+                    {item.email && (
+                      <>
+                        {" "}
+                        <a href={`mailto:${item.email}`}>{item.email}</a>
+                      </>
+                    )}
+                  </p>
+                ))}
+              </div>
+            </>
+          ))
+        }
+        <h1 class="display signup__heading" data-form-heading>
+          Reserve your spot
+        </h1>
         <SignupForm />
       </section>
 
@@ -83,7 +169,11 @@ const intro =
           <p>Photo credit: Paul Natkin</p>
         </div>
         <nav class="footer__links" aria-label="Legal">
-          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://whynowmusic.com/termsandconditions/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Terms of Use
           </a>
           <a
@@ -100,11 +190,24 @@ const intro =
     <!-- RIGHT COLUMN — sticky image (desktop) -->
     <aside class="visual" aria-hidden="true">
       <div class="visual__sticky">
-        <img class="visual__photo" src="/images/hero.webp" alt="" width="1400" height="923" loading="lazy" />
+        <img
+          class="visual__photo"
+          src="/images/hero.webp"
+          alt=""
+          width="1400"
+          height="923"
+          loading="lazy"
+        />
         <span class="visual__line"></span>
         <div class="date-badge">
-          <p class="date-badge__date">28 November 2026</p>
-          <p class="date-badge__sub">Featuring live performance by special guests</p>
+          <p class="date-badge__date">Saturday, 28 November 2026 8PM</p>
+          <p class="date-badge__sub">
+            Cologne, Germany: Söckchen Altstadtkneipe
+          </p>
+          <p class="date-badge__sub">Free entry, spots are limited</p>
+          <p class="date-badge__sub">
+            Live performances by Chanel Haynes and Donovan Marcelle
+          </p>
         </div>
       </div>
     </aside>
@@ -290,6 +393,24 @@ const intro =
     font-weight: 400;
     font-size: 14px;
     line-height: 1.4;
+  }
+
+  .signup__intro p {
+    margin: 0;
+  }
+
+  .signup__intro p + p {
+    margin-top: 1em;
+  }
+
+  .signup__intro strong {
+    font-family: var(--font-bold);
+    font-weight: 700;
+  }
+
+  .signup__intro a {
+    color: inherit;
+    text-decoration: underline;
   }
 
   /* Heading — Acumin Pro ExtraCondensed Bold */
@@ -504,9 +625,9 @@ const intro =
       right: 0;
       bottom: 0;
       height: 162px;
-      width: 45%;
-      min-width: 300px;
-      padding: 20px;
+      width: 50%;
+      min-width: 360px;
+      padding: 12px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -529,6 +650,11 @@ const intro =
     }
 
     .date-badge__sub {
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .date-badge__date + .date-badge__sub {
       margin-top: 10px;
     }
   }
