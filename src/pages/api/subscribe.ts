@@ -73,7 +73,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     // -----------------------------------------------------------------
-    // STEP 2: Subscribe Profile to List & Set Consent
+    // STEP 2:   Subscribe Profile to List & Set Consent
     // -----------------------------------------------------------------
     const subscribePayload = {
       data: {

@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import AmberSDK from "../components/AmberSDK.astro";
 
 interface Props {
   title?: string;
@@ -8,7 +9,7 @@ interface Props {
 
 const {
   title = "Tina Turner — 87th Birthday · Cologne 2026",
-  description = "Join us to celebrate Tina’s 87th Birthday in Cologne on 28 November 2026, with live performances from special guests. Save the date.",
+  description = "Celebrate Tina’s 87th birthday at Söckchen, Cologne, on 28 November 2026: live performances, a fan DJ and free entry. Spaces are limited, so register now.",
 } = Astro.props;
 ---
 
@@ -58,18 +59,36 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:site_name" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL("/share-image.png", Astro.site)} />
+    <meta
+      property="og:image"
+      content={new URL("/share-image.png", Astro.site)}
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={Astro.site} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL("/share-image.png", Astro.site)} />
+    <meta
+      name="twitter:image"
+      content={new URL("/share-image.png", Astro.site)}
+    />
 
     <!-- Preload the LCP hero image (per breakpoint) -->
-    <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 899px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/hero.webp" media="(min-width: 900px)" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-mobile.webp"
+      media="(max-width: 899px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero.webp"
+      media="(min-width: 900px)"
+      fetchpriority="high"
+    />
 
     <!-- Brand fonts (Adobe Fonts) — loaded non-render-blocking; text shows in the
          fallback stack immediately, then swaps to Acumin/Futura when the kit loads -->
@@ -86,6 +105,7 @@ const {
     </noscript>
 
     <title>{title}</title>
+    <AmberSDK brand="tina-turner" property="micro-site" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
