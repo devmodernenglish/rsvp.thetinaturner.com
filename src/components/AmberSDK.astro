@@ -1,0 +1,89 @@
+---
+// src/components/AmberSDK.astro
+interface Props {
+  brand?: string;
+  property?: string;
+}
+
+const { brand = "tina-turner", property = "micro-site" } = Astro.props;
+
+// Read Cloudflare Runtime Env or fallback to stage URL
+const gatewayUrl =
+  Astro.locals?.runtime?.env?.PUBLIC_AMBER_GATEWAY_URL ??
+  import.meta.env.PUBLIC_AMBER_GATEWAY_URL ??
+  "https://amber-stage.modeng.dev";
+---
+
+<!-- Embed Configuration as Data Attributes -->
+<div
+  id="amber-config"
+  data-gateway-url={gatewayUrl}
+  data-brand={brand}
+  data-property={property}
+  style="display:none;"
+></div>
+
+<script>
+  (function initAmberSDK() {
+    const configEl = document.getElementById("amber-config");
+    if (!configEl) return;
+
+    const gatewayUrl =
+      configEl.dataset.gatewayUrl || "https://amber-stage.modeng.dev";
+
+    const brand = configEl.dataset.brand || "tina-turner";
+    const property = configEl.dataset.property || "micro-site";
+
+    const baseUrl = gatewayUrl.replace(/\/+$/, "");
+    const apiUrl = `${baseUrl}/api`;
+    const sdkScriptUrl = `${baseUrl}/amber.iife.js`;
+
+    if (document.getElementById("amber-sdk-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "amber-sdk-script";
+    script.src = sdkScriptUrl;
+    script.async = true;
+    script.defer = true;
+
+    script.onload = async () => {
+      let retries = 0;
+      const checkGlobal = setInterval(async () => {
+        const GlobalClass =
+          (window as any).Amber?.Amber ||
+          (window as any).ArchiveX?.ArchiveX ||
+          (window as any).ArchiveX;
+
+        if (typeof GlobalClass === "function") {
+          clearInterval(checkGlobal);
+
+          try {
+            const amberInstance = new GlobalClass({ apiUrl });
+            await amberInstance.init(
+              { tenant: "pophouse", brand, property },
+              { debug: import.meta.env.DEV },
+            );
+
+            // Attach to global window scope for form triggers
+            (window as any).amberInstance = amberInstance;
+
+            // Track pageview automatically
+            amberInstance.track("pageview", {
+              path: window.location.pathname,
+              title: document.title,
+            });
+
+            console.log("[Amber SDK] 🚀 Initialized on Astro site.");
+          } catch (err) {
+            console.error("[Amber SDK] Initialization failed:", err);
+          }
+        }
+
+        retries++;
+        if (retries > 50) clearInterval(checkGlobal);
+      }, 100);
+    };
+
+    document.head.appendChild(script);
+  })();
+</script>
