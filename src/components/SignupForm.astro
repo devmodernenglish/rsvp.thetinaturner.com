@@ -98,12 +98,7 @@ const countries = [
         {" "}
         Country{" "}
       </label>
-      <select
-        class="field__input field__select"
-        id="country"
-        name="country"
-        required
-      >
+      <select class="field__input field__select" id="country" name="country" required>
         <option value="" disabled selected>
           Please select
         </option>
@@ -111,14 +106,7 @@ const countries = [
           <option value={c}>{c}</option>
         ))}
       </select>
-      <img
-        class="field__arrow"
-        src="/svg/dropdown.svg"
-        alt=""
-        aria-hidden="true"
-        width="12"
-        height="6"
-      />
+      <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
     </div>
 
     <fieldset class="field-group" data-field>
@@ -143,12 +131,7 @@ const countries = [
           <label class="field__label field__label--sm" for="dobMonth">
             Month
           </label>
-          <select
-            class="field__input field__select"
-            id="dobMonth"
-            name="dobMonth"
-            required
-          >
+          <select class="field__input field__select" id="dobMonth" name="dobMonth" required>
             <option value="" disabled selected>
               Please select
             </option>
@@ -156,14 +139,7 @@ const countries = [
               <option value={m}>{m}</option>
             ))}
           </select>
-          <img
-            class="field__arrow"
-            src="/svg/dropdown.svg"
-            alt=""
-            aria-hidden="true"
-            width="12"
-            height="6"
-          />
+          <img class="field__arrow" src="/svg/dropdown.svg" alt="" aria-hidden="true" width="12" height="6" />
         </div>
         <div class="field field--sub">
           <label class="field__label field__label--sm" for="dobYear">
@@ -188,13 +164,9 @@ const countries = [
         <input class="check__input" type="checkbox" name="marketing" />
         <span class="check__box" aria-hidden="true"></span>
         <span class="check__text">
-          I want to receive updates and marketing communication from Tina
-          Turner. By signing up you agree to the Tina Turner
-          <a
-            href="https://whynowmusic.com/termsandconditions/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          I want to receive updates and marketing communication from Tina Turner. By signing up you agree to the Tina
+          Turner
+          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
             Terms of Use
           </a>
           . For information on how we process your personal data please see our{" "}
@@ -214,38 +186,25 @@ const countries = [
         <span class="check__box" aria-hidden="true"></span>
         <span class="check__text">
           *I agree to the Tina Turner{" "}
-          <a
-            href="https://whynowmusic.com/termsandconditions/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://whynowmusic.com/termsandconditions/" target="_blank" rel="noopener noreferrer">
             Terms of Use
           </a>
         </span>
       </label>
     </div>
 
-    <p class="form__notice">
-      If successful on getting tickets, you expressly consent to the possibility
-      of being filmed or photographed by our team, and that this material may be
-      used on our social media or other channels for advertising/commercial
-      purposes. If you do not wish to be filmed or photographed, please do not
-      pose for photos and inform our staff.
-    </p>
+    <!-- <p class="form__notice">
+      If successful on getting tickets, you expressly consent to the possibility of being filmed or photographed by our
+      team, and that this material may be used on our social media or other channels for advertising/commercial
+      purposes. If you do not wish to be filmed or photographed, please do not pose for photos and inform our staff.
+    </p> -->
 
     <button class="btn btn--submit" type="submit">
-      Reserve my spot
+      Sign up
     </button>
 
     <p class="form__error" data-error hidden>
-      <img
-        class="form__error-icon"
-        src="/svg/error.svg"
-        alt=""
-        aria-hidden="true"
-        width="24"
-        height="24"
-      />
+      <img class="form__error-icon" src="/svg/error.svg" alt="" aria-hidden="true" width="24" height="24" />
       <span data-error-text>Please complete all mandatory fields</span>
     </p>
   </form>
@@ -254,12 +213,10 @@ const countries = [
     <p class="display success__title">Received!</p>
     <div class="success__body">
       <p>
-        Thank you, your reservation request is in. Make sure to confirm your
-        subscription so you don't miss any updates.
+        Thank you, your reservation request is in. Make sure to confirm your subscription so you don't miss any updates.
       </p>
       <p>
-        Spots are limited, so keep an eye on your inbox: if you've got a spot,
-        you'll hear from us within a few days.
+        Spots are limited, so keep an eye on your inbox: if you've got a spot, you'll hear from us within a few days.
       </p>
     </div>
   </div>
@@ -588,10 +545,7 @@ const countries = [
             if (!control.checked) ok = false;
           } else if (!control.value.trim()) {
             ok = false;
-          } else if (
-            control.type === "email" &&
-            !emailPattern.test(control.value)
-          ) {
+          } else if (control.type === "email" && !emailPattern.test(control.value)) {
             ok = false;
           }
         });
@@ -661,17 +615,14 @@ const countries = [
 
         // On success, render the success state
         form.hidden = true;
-        document
-          .querySelector("[data-form-heading]")
-          ?.setAttribute("hidden", "");
+        document.querySelector("[data-form-heading]")?.setAttribute("hidden", "");
         if (successPanel) {
           successPanel.hidden = false;
           successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       } catch (err) {
         if (errorRow && errorText) {
-          errorText.textContent =
-            "Something went wrong. Please try again later.";
+          errorText.textContent = "Something went wrong. Please try again later.";
           errorRow.hidden = false;
         }
       } finally {
